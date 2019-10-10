@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ppsapp-macvlan
+  annotations:
+    k8s.v1.cni.cncf.io/networks: macvlan-conf2
+  labels:
+    app: pps
+    type: macvlan
+spec:
+  containers:
+  - name: ppsapp
+    image: mypps:v0.2
+    imagePullPolicy: Never
+    resources:
+      requests:
+        intel.com/intel_sriov_netdevice: '1'
+      limits:
+        intel.com/intel_sriov_netdevice: '1'
+    env:
+    - name: IFACE
+      value: "net1"

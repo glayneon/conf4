@@ -1,0 +1,8 @@
+FROM alpine:latest
+MAINTAINER Chase.kim <seokjoon.kim@bespinglobal.com>
+
+RUN apk add --no-cache curl bind-tools bash 
+RUN mkdir /root/pps
+COPY pps.sh /root/pps
+WORKDIR /root/pps
+CMD ["/bin/bash", "-c", "./pps.sh"]

@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ppsapp-sriov
+  annotations:
+    k8s.v1.cni.cncf.io/networks: sriov-net1
+  labels:
+    app: pps
+    type: sriov
+spec:
+  containers:
+  - name: ppsapp
+    image: mypps:v0.2
+    imagePullPolicy: Never
+    resources:
+      requests:
+        intel.com/intel_sriov_netdevice: '1'
+      limits:
+        intel.com/intel_sriov_netdevice: '1'
+    env:
+    - name: IFACE
+      value: "net1"

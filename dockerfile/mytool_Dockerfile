@@ -1,4 +1,0 @@
-FROM alpine:latest
-RUN apk add --no-cache curl bind-tools bash
-EXPOSE 8080/tcp
-CMD ["/bin/bash", "-c", "sleep 5000"]
